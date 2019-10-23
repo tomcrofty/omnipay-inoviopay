@@ -211,50 +211,20 @@ abstract class AbstractRequest extends BaseAbstractRequest
         return $this->setParameter('transactorId', $value);
     }
 
-    /**
-     * @return array
-     */
-    public function getHeaders()
+    protected function sendRequest($data, $method = 'POST')
     {
-        $headers = array(
-            'Content-Type'   => 'application/x-www-form-urlencoded',
-            'Accept-Charset' => 'iso-8859-1,*,utf-8',
-        );
-
-        return $headers;
-    }
-
-    protected function createClientRequest($data, array $headers = null)
-    {
-        /*$config                          = $this->httpClient->getConfig();
-        $curlOptions                     = $config->get('curl.options');
-        $curlOptions[CURLOPT_SSLVERSION] = 6;
-        $config->set('curl.options', $curlOptions);
-        $this->httpClient->setConfig($config);*/
-
         $httpRequest = $this->httpClient->request(
-            $this->getHttpMethod(),
+            $method,
             $this->getEndpoint(),
-            $headers,
+            [
+                'Content-Type'   => 'application/x-www-form-urlencoded',
+                'Accept-Charset' => 'iso-8859-1,*,utf-8',
+            ],
             $data
         );
 
-        //$httpRequest->getCurlOptions()->set(CURLOPT_SSLVERSION, 6); // CURL_SSLVERSION_TLSv1_2 for libcurl < 7.35
-
-        return $httpRequest;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function sendData($data)
-    {
-        $httpResponse  = $this->createClientRequest(json_encode($data), $this->getHeaders());
-
         return $this->response = new Response($this, json_decode($httpResponse->getBody()->getContents(), true), $httpResponse->getStatusCode());
     }
-
-
 
     /**
      * Set the common data used in every request.

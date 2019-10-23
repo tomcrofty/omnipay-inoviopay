@@ -231,7 +231,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
      */
     public function sendData($data)
     {
-        $httpResponse  = $this->createClientRequest(json_encode($data), $this->getHeaders());
+        $httpResponse  = $this->sendRequest(json_encode($data));
 
         return $this->response = new Response($this, json_decode($httpResponse->getBody()->getContents(), true), $httpResponse->getStatusCode());
     }

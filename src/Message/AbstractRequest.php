@@ -223,8 +223,20 @@ abstract class AbstractRequest extends BaseAbstractRequest
             $data
         );
 
+        return $httpRequest;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function sendData($data)
+    {
+        $httpResponse  = $this->createClientRequest(json_encode($data), $this->getHeaders());
+
         return $this->response = new Response($this, json_decode($httpResponse->getBody()->getContents(), true), $httpResponse->getStatusCode());
     }
+
+
 
     /**
      * Set the common data used in every request.

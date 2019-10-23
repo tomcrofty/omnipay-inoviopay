@@ -232,16 +232,6 @@ abstract class AbstractRequest extends BaseAbstractRequest
         $config->set('curl.options', $curlOptions);
         $this->httpClient->setConfig($config);*/
 
-        // don't throw exceptions for 4xx errors
-        $this->httpClient->getEventDispatcher()->addListener(
-            'request.error',
-            function ($event) {
-                if ($event['response']->isClientError()) {
-                    $event->stopPropagation();
-                }
-            }
-        );
-
         $httpRequest = $this->httpClient->request(
             $this->getHttpMethod(),
             $this->getEndpoint(),

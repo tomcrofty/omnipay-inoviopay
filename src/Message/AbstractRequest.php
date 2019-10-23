@@ -2,6 +2,7 @@
 
 namespace Omnipay\InovioPay\Message;
 
+use Omnipay\Common\Message\ResponseInterface;
 use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 
 /**

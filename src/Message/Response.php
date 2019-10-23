@@ -3,7 +3,6 @@
 namespace Omnipay\InovioPay\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
-use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
@@ -12,7 +11,7 @@ use Omnipay\Common\Message\RequestInterface;
  * @date      3/5/18
  * @author    markbonnievestil
  */
-class Response extends AbstractResponse implements RedirectResponseInterface
+class Response extends AbstractResponse
 {
     /**
      * @var int
@@ -28,7 +27,8 @@ class Response extends AbstractResponse implements RedirectResponseInterface
      */
     public function __construct(RequestInterface $request, $data, $statusCode = 200)
     {
-        parent::__construct($request, $data);
+        $this->request = $request;
+        $this->data = $data;
         $this->statusCode = $statusCode;
     }
 

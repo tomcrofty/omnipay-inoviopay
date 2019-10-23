@@ -75,6 +75,7 @@ class AuthorizeRequest extends AbstractRequest
         $this->validate('amount', 'currency', 'productId');
 
         $data['request_action']   = 'CCAUTHORIZE';
+        $data['li_count_1']       = 1;
         $data['li_prod_id_1']     = $this->getProductId();
         $data['li_value_1']       = $this->getAmount();
         $data['request_currency'] = strtolower($this->getCurrency());

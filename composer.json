@@ -1,5 +1,5 @@
 {
-    "name": "affiliatelabs/omnipay-inoviopay",
+    "name": "tomcrofty/omnipay-inoviopay",
     "type": "library",
     "description": "InovioPay driver for the Omnipay payment processing library",
     "keywords": [
@@ -10,7 +10,7 @@
         "payment",
         "inoviopay"
     ],
-    "homepage": "https://github.com/affiliatelabs/omnipay-inoviopay",
+    "homepage": "https://github.com/tomcrofty/omnipay-inoviopay",
     "license": "MIT",
     "authors": [
         {
@@ -20,6 +20,10 @@
         {
             "name": "Affiliate Labs",
             "homepage": "https://affiliatelabs.com"
+        }
+        {   
+            "name": "Tom Croft",
+            "homepage": "https://tom-croft.com"
         }
     ],
     "autoload": {
